@@ -54,7 +54,7 @@ module Hipmost
         end
 
         def username
-          attrs["mention_name"]
+          attrs["email"].to_s.split("@")[0] || "deleted"
         end
 
         def email
