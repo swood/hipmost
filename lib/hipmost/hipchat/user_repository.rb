@@ -54,7 +54,11 @@ module Hipmost
         end
 
         def username
-          attrs["email"].to_s.split("@")[0] || "deleted"
+      		data = File.read("/hipmost/real_users.json")
+      		json = JSON.parse(data)
+      		all_data = json['users']
+      		found_user = all_data.select { |item| item["email"] == attrs["email"] }.first
+      		found_user['user'] unless found_user.nil?
         end
 
         def email
